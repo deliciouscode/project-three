@@ -1,5 +1,6 @@
 // import firebase from './firebase';
 import { useState, useEffect } from 'react';
+import Header from './Header';
 import RecommendationsList from './RecommendationsList';
 import Footer from './Footer';
 import './App.scss';
@@ -46,9 +47,13 @@ function App() {
  
   return (
     <div className="App">
-      {/* form to add new book to list */}
+      <Header />
+
+      <h2>Watchlist</h2>
+
+      {/* form to search for recommendations list */}
       <form action="submit">
-        <label htmlFor="media">Enter the name of what you would like to search for</label>
+        <label htmlFor="media">Enter Your Favourite</label>
         <input 
           type="text" 
           id="media"
@@ -71,6 +76,8 @@ function App() {
           </select>
           <button onClick={ formSubmit }>Submit</button>
       </form>
+
+      <h2>Recommendations</h2>
       <ul>
         {/* send results from API call as props to list component */}
         {
