@@ -1,9 +1,11 @@
 import firebase from './firebase';
 import { useState, useEffect } from 'react';
+import Header from './Header';
 import RecommendationsList from './RecommendationsList';
-import './App.css';
-function App() {
+import Footer from './Footer';
+import './App.scss';
 
+function App() {
   // setting up our method to set state. Has to be an empty array because of the .map method in our code below - it can map through an empty array and return nothing, but if it was a different data type, that would cause .map to not function!
   const [list, setList] = useState([]);
   // this will for the text input
@@ -81,6 +83,7 @@ function App() {
             'params[info]' : 1,
             'params[limit]' : 15
         });
+
     fetch(url)
         .then( res => res.json())
         // this set method will completely replace the useState array with our array of results
@@ -94,9 +97,14 @@ function App() {
         });
   }
 
+
   return (
     <div className="App">
-    {/* list of items saved by the user */}
+      <Header />
+
+      <h2>Watchlist</h2>
+
+      {/* list of items saved by the user */}
       <ul>
         {
           savedList.map( (item) => {
@@ -113,30 +121,33 @@ function App() {
       </ul>
 
 
-
-      {/* form to call API for recommendations */}
+      {/* form to search for recommendations list */}
       <form action="submit">
-        <label htmlFor="media">Enter the name of what you would like to search for</label>
+        <label htmlFor="media">Enter Your Favourite</label>
         <input 
           type="text" 
           id="media"
           onChange={ handleTextChange }
           value={ userInput }
-        />
-        <select 
-          name="mediaType" 
-          id="mediaType"
-          onChange={ handleSelectChange }>
-          <option value="">Select Media Type</option>
-          <option value="band">Music</option>
-          <option value="movie">Movie</option>
-          <option value="show">TV Show</option>
-          <option value="podcast">Podcast</option>
-          <option value="book">Book</option>
-          <option value="game">Game</option>
-        </select>
-        <button onClick={ formSubmit }>Submit</button>
+          required="required"
+          />
+          <select 
+            name="mediaType" 
+            id="mediaType"
+            onChange={ handleSelectChange }
+            value={ mediaType }>
+            <option value="">Select Media Type</option>
+            <option value="band">Music</option>
+            <option value="movie">Movie</option>
+            <option value="show">TV Show</option>
+            <option value="podcast">Podcast</option>
+            <option value="book">Book</option>
+            <option value="game">Game</option>
+          </select>
+          <button onClick={ formSubmit }>Submit</button>
       </form>
+
+      <h2>Recommendations</h2>
       <ul>
         {/* send results from API call as props to list component */}
         {
@@ -151,6 +162,8 @@ function App() {
           })
         }
       </ul>
+
+      <Footer />
     </div>
   );
 }
