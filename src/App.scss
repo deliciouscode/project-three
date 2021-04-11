@@ -4,7 +4,7 @@ $orange :rgb(254,98,57);
 $green :rgb(70, 174, 115);
 $purple :rgb(82, 41, 76);
 $white :rgb(249,250,251);
-$grey :rgb(228,221,211);
+$grey :rgb(228, 221, 211);
 $black:rgb(26,25,23);
 
 .App {
@@ -77,8 +77,12 @@ $black:rgb(26,25,23);
     // padding: 20px;
     border-radius: 10px;
     list-style-type: none;
+    padding-left: 0;
     background-color: $black;
-    
+    img {
+      max-width: 30px;
+      padding: 10px;
+    }
   }
 
   a {

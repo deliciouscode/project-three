@@ -2,6 +2,7 @@ import firebase from './firebase';
 import { useState, useEffect } from 'react';
 import Header from './Header';
 import RecommendationsList from './RecommendationsList';
+import SavedList from './SavedList';
 import Footer from './Footer';
 import './App.scss';
 
@@ -51,10 +52,10 @@ function App() {
       // create an empty object to update the viewed property
       const properties = {};
       // conditional to toggle the database viewed value between true and false 
-      if (item.name.viewed) {
-        properties.viewed = false;
+      if (item.name.notviewed) {
+        properties.notviewed = false;
       } else {
-        properties.viewed = true;
+        properties.notviewed = true;
       }
       // update the database with the new value of the viewed vaue
       dbRef.update(properties);
@@ -74,6 +75,7 @@ function App() {
   // this function gathers the input from the text box and the dropdown menu and sends them to the API in order to set the state in the RecommendationsList component
   const formSubmit = (event) => {
     event.preventDefault();
+    setList([]);
     const url = new URL(`https://proxy.hackeryou.com`)
         url.search = new URLSearchParams({
             reqUrl : `https://tastedive.com/api/similar`,
@@ -88,15 +90,11 @@ function App() {
         .then( res => res.json())
         // this set method will completely replace the useState array with our array of results
         .then( apiJson => {
-        // this statement handles any possible error handling in case something is not found.
-          if (apiJson.Similar.Results.length === 0) {
-            console.log('nothing found!');
-          } else {
-            setList(apiJson.Similar.Results);
-          }
+          setList(apiJson.Similar.Results);
         });
   }
 
+  // useEffect 
 
   return (
     <div className="App">
@@ -105,16 +103,19 @@ function App() {
       <h2>Watchlist</h2>
 
       {/* list of items saved by the user */}
-      <ul>
+      <ul className="watchList">
         {
           savedList.map( (item) => {
             return (
-              <li key={item.key}>
-                {/* added ternary operator to denote if a user has viewed the saved item or not */}
-                {item.name.viewed ? <p><strong>{item.name.title} has been viewed.</strong></p> : <p>{item.name.title}</p> }
-                <button onClick={ () => { handleViewed(item) } }>Viewed</button>
-                <button onClick={ () => { handleRemove(item.key) } }>Remove</button>
-              </li>
+              <SavedList
+                name={item.name}
+                type={item.type}
+              />
+              // <li key={item.key}><img src="" alt=""/>
+              //   {/* added ternary operator to denote if a user has viewed the saved item or not */}
+              //   {item.name.notviewed ? <em>{item.name.title}</em>  : <strong>{item.name.title} has been viewed.</strong>} <input type="checkbox" onClick={ () => { handleViewed(item) } } />
+              //   <button onClick={ () => { handleRemove(item.key) } }>Remove</button>
+              // </li>
             )
           }) 
         }
@@ -150,7 +151,7 @@ function App() {
       <h2>Recommendations</h2>
       <ul>
         {/* send results from API call as props to list component */}
-        {
+        { list.length !== 0 ?
           list.map( (listItem, index) => {
             return(
               <RecommendationsList
@@ -159,7 +160,7 @@ function App() {
                 type={listItem.Type}
               />
             )
-          })
+          }) : <p>Please enter a new search.</p>
         }
       </ul>
 
