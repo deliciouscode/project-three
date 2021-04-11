@@ -98,7 +98,6 @@ $black:rgb(26,25,23);
   }
 
   main {
-    margin-bottom: 10vh;
     padding: 10vh 0 10vh ;
 
     .watchList {
@@ -117,6 +116,11 @@ $black:rgb(26,25,23);
     width: 100%;
     position: fixed;
     bottom: 0;
+    
+    p{
+      margin: 5px 0;
+      font-size: 0.8rem;
+    }
   }
 
 }
