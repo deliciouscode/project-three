@@ -38,30 +38,6 @@ function App() {
         setSavedList(newState);
       })
     }, [])
-    
-    // this function handles removing saved items from the database
-    const handleRemove = (itemId) => {
-      const dbRef = firebase.database().ref();
-      dbRef.child(itemId).remove();
-    }
-
-    // this function handles changing the status of a saved item from viewed to not yet viewed
-    const handleViewed = (item) => {
-      console.log(item.name.notviewed)
-      // establish firebase connection specific to the item referred to by the user
-      // const dbRef = firebase.database().ref(`${item.id}`);
-      // // create an empty object to update the viewed property
-      // const properties = {};
-      // // conditional to toggle the database viewed value between true and false 
-      // if (item.name.notviewed) {
-      //   properties.notviewed = false;
-      // } else {
-      //   properties.notviewed = true;
-      // }
-      // // update the database with the new value of the viewed vaue
-      // dbRef.update(properties);
-    }
-
 
   // this handles the change of the user text input
   const handleTextChange = (event) => {
@@ -101,71 +77,68 @@ function App() {
     <div className="App">
       <Header />
 
-      <h2>Watchlist</h2>
+      <main>
+        <section>
+          <h2>Watchlist</h2>
+          {/* list of items saved by the user */}
+          <ul className="watchList">
+            {
+              savedList.map( (item) => {
+                return (
 
-      {/* list of items saved by the user */}
-      <ul className="watchList">
-        {
-          savedList.map( (item) => {
-            return (
+                  <SavedList 
+                    id={item.key} 
+                    data={item.name}/>
+                )
+              }) 
+            }
+          </ul>
+        </section>
 
-              <SavedList 
-                id={item.key} 
-                data={item.name}/>
-
-
-              // <li key={item.key}>
-              //   {/* added ternary operator to denote if a user has viewed the saved item or not */}
-              //   {item.name.notviewed ? <em>{item.name.title}</em>  : <strong>{item.name.title} has been viewed.</strong>} <input type="checkbox" onClick={ () => { handleViewed(item) } } />
-              //   <button onClick={ () => { handleRemove(item.key) } }>Remove</button>
-              // </li>
-            )
-          }) 
-        }
-      </ul>
-
-
-      {/* form to search for recommendations list */}
-      <form action="submit">
-        <label htmlFor="media">Enter Your Favourite</label>
-        <input 
-          type="text" 
-          id="media"
-          onChange={ handleTextChange }
-          value={ userInput }
-          required="required"
-          />
-          <select 
-            name="mediaType" 
-            id="mediaType"
-            onChange={ handleSelectChange }
-            value={ mediaType }>
-            <option value="">Select Media Type</option>
-            <option value="band">Music</option>
-            <option value="movie">Movie</option>
-            <option value="show">TV Show</option>
-            <option value="podcast">Podcast</option>
-            <option value="book">Book</option>
-            <option value="game">Game</option>
-          </select>
-          <button onClick={ formSubmit }>Submit</button>
-      </form>
-
-      <h2>Recommendations</h2>
-      <ul>
-        {/* send results from API call as props to list component */}
-        { list.length !== 0 ?
-          list.map( (listItem, index) => {
-            return(
-              <RecommendationsList
-                key={index}
-                name={listItem.Name}
-                type={listItem.Type}
-              />
-            )
-          }) : <p>Please enter a new search.</p>
-        }
-      </ul>
+        {/* form to search for recommendations list */}
+        <form action="submit">
+          <label htmlFor="media">Enter Your Favourite</label>
+          <input 
+            type="text" 
+            id="media"
+            onChange={ handleTextChange }
+            value={ userInput }
+            required="required"
+            />
+            <select 
+              name="mediaType" 
+              id="mediaType"
+              onChange={ handleSelectChange }
+              value={ mediaType }>
+              <option value="">Select Media Type</option>
+              <option value="band">Music</option>
+              <option value="movie">Movie</option>
+              <option value="show">TV Show</option>
+              <option value="podcast">Podcast</option>
+              <option value="book">Book</option>
+              <option value="game">Game</option>
+            </select>
+            <button onClick={ formSubmit }>Submit</button>
+        </form>
+        
+        <section>
+          <h2>Recommendations</h2>
+          <ul>
+            {/* send results from API call as props to list component */}
+            { list.length !== 0 ?
+              list.map( (listItem, index) => {
+                return(
+                  <RecommendationsList
+                    key={index}
+                    name={listItem.Name}
+                    type={listItem.Type}
+                  />
+                )
+              }) : <p>Please enter a new search.</p>
+            }
+          </ul>
+        </section>
+      </main>
 
       <Footer />
     </div>
