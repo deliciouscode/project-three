@@ -17,11 +17,11 @@ const SavedList = (props) => {
         // this function handles changing the status of a saved item from viewed to not yet viewed
         const handleViewed = (item) => {
         // establish firebase connection specific to the item referred to by the user
-        const dbRef = firebase.database().ref(`${item.id}`);
+        const dbRef = firebase.database().ref(item);
         // create an empty object to update the viewed property
         const properties = {};
         // conditional to toggle the database viewed value between true and false 
-        if (item.data.notviewed) {
+        if (props.data.notviewed) {
             properties.notviewed = false;
         } else {
             properties.notviewed = true;
@@ -54,7 +54,7 @@ const SavedList = (props) => {
             {props.data.notviewed ? <em>{props.data.title}</em>  : <strong>{props.data.title} has been viewed.</strong>}
             </div>
             <div>
-                <label htmlFor="viewed">Viewed</label><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props) } } />
+                <label htmlFor="viewed">Viewed</label><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
             </div>
         </li>
