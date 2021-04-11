@@ -26,8 +26,10 @@ $black:rgb(26,25,23);
   
 
   header {
+    background-color: $orange;
     position: fixed;
     top: 0;
+    width: 100%;
     height: 10vh;
     color:$black;
     display: flex;
@@ -74,7 +76,7 @@ $black:rgb(26,25,23);
 
   ul {
     margin: 0;
-    // padding: 20px;
+    padding: 20px 0;
     border-radius: 10px;
     list-style-type: none;
     padding-left: 0;
@@ -95,7 +97,23 @@ $black:rgb(26,25,23);
     color: $grey;
   }
 
+  main {
+    padding: 10vh 0 10vh ;
+
+    .watchList {
+      background: transparent;
+
+      li{
+        background-color: $black;
+        margin: 5px 0;
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
+  }
   footer {
+    background-color: $orange;
+    width: 100%;
     position: fixed;
     bottom: 0;
   }

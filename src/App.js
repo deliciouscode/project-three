@@ -18,48 +18,48 @@ function App() {
 
 
   // this useEffect is added for establishing a connection to the firebase database anytime the user opens the app or makes changes to the database
-    useEffect( () => {
-      // establish connection to firebase DB
-      const dbRef = firebase.database().ref();
-      // add event listener for any time firebase DB changes.
-      dbRef.on('value', (res) => {
-        // create new variable to store the new state that we want to introduce to our app
-        const newState = [];
-        // use res.val to store the response from your DB in a useful object chunk
-        const data = res.val();
-        // iterate using for in loop to get items into array, and to have unique key value assigned to each one
-        for (let key in data) {
-          newState.push({
-            key : key,
-            name : data[key],
-          })
-        }
-        // call this function to update out component's state to be the new value
-        setSavedList(newState);
-      })
-    }, [])
-    
-    // this function handles removing saved items from the database
-    const handleRemove = (itemId) => {
-      const dbRef = firebase.database().ref();
-      dbRef.child(itemId).remove();
-    }
-
-    // this function handles changing the status of a saved item from viewed to not yet viewed
-    const handleViewed = (item) => {
-      // establish firebase connection specific to the item referred to by the user
-      const dbRef = firebase.database().ref(`${item.key}`);
-      // create an empty object to update the viewed property
-      const properties = {};
-      // conditional to toggle the database viewed value between true and false 
-      if (item.name.notviewed) {
-        properties.notviewed = false;
-      } else {
-        properties.notviewed = true;
+  useEffect( () => {
+    // establish connection to firebase DB
+    const dbRef = firebase.database().ref();
+    // add event listener for any time firebase DB changes.
+    dbRef.on('value', (res) => {
+      // create new variable to store the new state that we want to introduce to our app
+      const newState = [];
+      // use res.val to store the response from your DB in a useful object chunk
+      const data = res.val();
+      // iterate using for in loop to get items into array, and to have unique key value assigned to each one
+      for (let key in data) {
+        newState.push({
+          key : key,
+          name : data[key],
+        })
       }
-      // update the database with the new value of the viewed vaue
-      dbRef.update(properties);
+      // call this function to update out component's state to be the new value
+      setSavedList(newState);
+    })
+  }, [])
+  
+  // this function handles removing saved items from the database
+  const handleRemove = (itemId) => {
+    const dbRef = firebase.database().ref();
+    dbRef.child(itemId).remove();
+  }
+
+  // this function handles changing the status of a saved item from viewed to not yet viewed
+  const handleViewed = (item) => {
+    // establish firebase connection specific to the item referred to by the user
+    const dbRef = firebase.database().ref(`${item.key}`);
+    // create an empty object to update the viewed property
+    const properties = {};
+    // conditional to toggle the database viewed value between true and false 
+    if (item.name.viewed) {
+      properties.viewed = false;
+    } else {
+      properties.viewed = true;
     }
+    // update the database with the new value of the viewed vaue
+    dbRef.update(properties);
+  }
 
 
   // this handles the change of the user text input
@@ -99,7 +99,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-
       <h2>Watchlist</h2>
 
       {/* list of items saved by the user */}
@@ -123,30 +122,6 @@ function App() {
 
 
       {/* form to search for recommendations list */}
-      <form action="submit">
-        <label htmlFor="media">Enter Your Favourite</label>
-        <input 
-          type="text" 
-          id="media"
-          onChange={ handleTextChange }
-          value={ userInput }
-          required="required"
-          />
-          <select 
-            name="mediaType" 
-            id="mediaType"
-            onChange={ handleSelectChange }
-            value={ mediaType }>
-            <option value="">Select Media Type</option>
-            <option value="band">Music</option>
-            <option value="movie">Movie</option>
-            <option value="show">TV Show</option>
-            <option value="podcast">Podcast</option>
-            <option value="book">Book</option>
-            <option value="game">Game</option>
-          </select>
-          <button onClick={ formSubmit }>Submit</button>
-      </form>
 
       <h2>Recommendations</h2>
       <ul>
