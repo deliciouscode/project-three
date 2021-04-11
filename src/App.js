@@ -47,18 +47,19 @@ function App() {
 
     // this function handles changing the status of a saved item from viewed to not yet viewed
     const handleViewed = (item) => {
+      console.log(item.name.notviewed)
       // establish firebase connection specific to the item referred to by the user
-      const dbRef = firebase.database().ref(`${item.key}`);
-      // create an empty object to update the viewed property
-      const properties = {};
-      // conditional to toggle the database viewed value between true and false 
-      if (item.name.notviewed) {
-        properties.notviewed = false;
-      } else {
-        properties.notviewed = true;
-      }
-      // update the database with the new value of the viewed vaue
-      dbRef.update(properties);
+      // const dbRef = firebase.database().ref(`${item.id}`);
+      // // create an empty object to update the viewed property
+      // const properties = {};
+      // // conditional to toggle the database viewed value between true and false 
+      // if (item.name.notviewed) {
+      //   properties.notviewed = false;
+      // } else {
+      //   properties.notviewed = true;
+      // }
+      // // update the database with the new value of the viewed vaue
+      // dbRef.update(properties);
     }
 
 
@@ -107,11 +108,13 @@ function App() {
         {
           savedList.map( (item) => {
             return (
-              <SavedList
-                name={item.name}
-                type={item.type}
-              />
-              // <li key={item.key}><img src="" alt=""/>
+
+              <SavedList 
+                id={item.key} 
+                data={item.name}/>
+
+
+              // <li key={item.key}>
               //   {/* added ternary operator to denote if a user has viewed the saved item or not */}
               //   {item.name.notviewed ? <em>{item.name.title}</em>  : <strong>{item.name.title} has been viewed.</strong>} <input type="checkbox" onClick={ () => { handleViewed(item) } } />
               //   <button onClick={ () => { handleRemove(item.key) } }>Remove</button>

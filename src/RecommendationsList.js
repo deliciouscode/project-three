@@ -17,7 +17,6 @@ const RecommendationsList = ( props ) => {
             notviewed : true
         }
         dbRef.push(properties);
-        
       }
 
     let image;

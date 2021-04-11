@@ -9,6 +9,7 @@ import firebase from './firebase';
 const SavedList = (props) => {
     // this function handles removing saved items from the database
     const handleRemove = (itemId) => {
+        console.log(itemId)
         const dbRef = firebase.database().ref();
         dbRef.child(itemId).remove();
         }
@@ -16,11 +17,11 @@ const SavedList = (props) => {
         // this function handles changing the status of a saved item from viewed to not yet viewed
         const handleViewed = (item) => {
         // establish firebase connection specific to the item referred to by the user
-        const dbRef = firebase.database().ref(`${item.key}`);
+        const dbRef = firebase.database().ref(`${item.id}`);
         // create an empty object to update the viewed property
         const properties = {};
         // conditional to toggle the database viewed value between true and false 
-        if (item.name.notviewed) {
+        if (item.data.notviewed) {
             properties.notviewed = false;
         } else {
             properties.notviewed = true;
@@ -31,31 +32,35 @@ const SavedList = (props) => {
 
 
     let image;
-    if (props.name.type === 'music') {
+    if (props.data.type === 'music') {
         image = music;
-    } else if (props.name.type === 'show') {
+    } else if (props.data.type === 'show') {
         image = show;
-    } else if (props.name.type === 'podcast') {
+    } else if (props.data.type === 'podcast') {
         image = podcast;
-    } else if (props.name.type === 'book') {
+    } else if (props.data.type === 'book') {
         image = book;
-    } else if (props.name.type === 'movie') {
+    } else if (props.data.type === 'movie') {
         image = movie;
-    } else if (props.name.type === 'game') {
+    } else if (props.data.type === 'game') {
         image = game;
     }
 
     return(
-        <li key={props.key}><img src={image} alt={props.type} />
+        <li>
+            <div>
+                <img src={image} alt={props.data.title}/>
             {/* added ternary operator to denote if a user has viewed the saved item or not */}
-            {props.name.notviewed ? <em>{props.name.title}</em>  : <strong>{props.name.title} has been viewed.</strong>} <input type="checkbox" onClick={ () => { handleViewed(props) } } />
-            <button onClick={ () => { handleRemove(props.key) } }>Remove</button>
+            {props.data.notviewed ? <em>{props.data.title}</em>  : <strong>{props.data.title} has been viewed.</strong>}
+            </div>
+            <div>
+                <label htmlFor="viewed">Viewed</label><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props) } } />
+                <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
+            </div>
         </li>
 
     )
 
 }
-
-
 
 export default SavedList;
