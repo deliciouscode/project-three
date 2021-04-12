@@ -54,7 +54,7 @@ const SavedList = (props) => {
             {props.data.notviewed ? <em>{props.data.title}</em>  : <strong>{props.data.title} has been viewed.</strong>}
             </div>
             <div>
-                <label htmlFor="viewed">Viewed</label><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
+                <label htmlFor="viewed"><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />Viewed</label>
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
             </div>
         </li>
