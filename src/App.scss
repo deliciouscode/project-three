@@ -60,19 +60,44 @@ $black:rgb(26,25,23);
   }
 
   form {
-    width: 50%;
+    width: 90%;
     font-family: $contentFont;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 
     input,
-    select,
-    button {
+    select {
       font-family: $contentFont;
       font-size: 1rem;
       margin: 5px;
       padding: 5px;
       border: none;
+      border-radius: 10px;
+      text-align: center;
+    }
+    select {
+      background-image: url('./assets/arrow.svg');
+      background-repeat: no-repeat;
+      background-position: right 0 top 0;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    button {
+      background-color: $black;
+      color: $grey;
+      font-family: $contentFont;
+      font-size: 1rem;
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid $grey;
+      border-radius: 10px;
+      text-align: center;
     }
   }
+
+
 
   ul {
     margin: 0;
@@ -81,9 +106,23 @@ $black:rgb(26,25,23);
     list-style-type: none;
     padding-left: 0;
     background-color: $black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     img {
       max-width: 30px;
-      padding: 10px;
+      padding: 10px 10px 0 10px;
+    }
+    button {
+      background-color: $black;
+      color: $grey;
+      font-family: $contentFont;
+      font-size: 1rem;
+      margin: 5px 5px 5px 10px;
+      padding: 5px;
+      border: 2px solid $grey;
+      border-radius: 10px;
+      text-align: center;
     }
   }
 
@@ -103,11 +142,22 @@ $black:rgb(26,25,23);
     .watchList {
       background: transparent;
 
-      li{
+      li {
         background-color: $black;
         margin: 5px 0;
         padding: 5px;
         border-radius: 5px;
+      }
+      button {
+        background-color: $black;
+        color: $grey;
+        font-family: $contentFont;
+        font-size: 1rem;
+        margin: 5px;
+        padding: 5px;
+        border: 2px solid $grey;
+        border-radius: 10px;
+        text-align: center;
       }
     }
   }
@@ -117,7 +167,7 @@ $black:rgb(26,25,23);
     position: fixed;
     bottom: 0;
     
-    p{
+    p {
       margin: 5px 0;
       font-size: 0.8rem;
     }
