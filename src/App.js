@@ -1,8 +1,9 @@
 import firebase from './firebase';
 import { useState, useEffect } from 'react';
 import Header from './Header';
-import RecommendationsList from './RecommendationsList';
 import SavedList from './SavedList';
+import Form from './Form';
+import RecommendationsList from './RecommendationsList';
 import Footer from './Footer';
 import './App.scss';
 
@@ -39,16 +40,6 @@ function App() {
       })
     }, [])
 
-  // this handles the change of the user text input
-  const handleTextChange = (event) => {
-    setUserInput(event.target.value);
-  }
-
-  // this handles the change of the dropdown menu
-  const handleSelectChange = (event) => {
-    setMediaType(event.target.value);
-  }
-
   // this function gathers the input from the text box and the dropdown menu and sends them to the API in order to set the state in the RecommendationsList component
   const formSubmit = (event) => {
     event.preventDefault();
@@ -59,7 +50,7 @@ function App() {
             'params[q]' : userInput,
             'params[type]' : mediaType,
             'params[k]' : `407899-PatrickM-CM8VF4NQ`,
-            'params[info]' : 1,
+            'params[info]' : 0,
             'params[limit]' : 15
         });
 
@@ -71,7 +62,7 @@ function App() {
         });
   }
 
-
+  // this function takes the user selection from the recommendations list and adds it to the DB in firebase as part of the user's watchlist.
   const addToSaved = (props) => {
     const dbRef = firebase.database().ref();
     const properties = {
@@ -93,10 +84,6 @@ function App() {
 
     setList(newList);
   }
-
-  
-
-
 
   return (
     <div className="App">
@@ -121,30 +108,12 @@ function App() {
         </section>
 
         {/* form to search for recommendations list */}
-        <form action="submit">
-          <label htmlFor="media">Enter Your Favourite</label>
-          <input 
-            type="text" 
-            id="media"
-            onChange={ handleTextChange }
-            value={ userInput }
-            required="required"
-            />
-            <select 
-              name="mediaType" 
-              id="mediaType"
-              onChange={ handleSelectChange }
-              value={ mediaType }>
-              <option value="">Select Media Type</option>
-              <option value="band">Music</option>
-              <option value="movie">Movie</option>
-              <option value="show">TV Show</option>
-              <option value="podcast">Podcast</option>
-              <option value="book">Book</option>
-              <option value="game">Game</option>
-            </select>
-            <button onClick={ formSubmit }>Submit</button>
-        </form>
+
+        <Form 
+          inputChange={setUserInput}
+          dropDownChange={setMediaType}
+          submitForm={formSubmit}
+          />
         
         <section>
           <h2>Recommendations</h2>
