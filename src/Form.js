@@ -23,7 +23,7 @@ const Form = (props) => {
                 <option value="book">Book</option>
                 <option value="game">Game</option>
             </select>
-            <button onClick={ event => props.submitForm(event) }>Submit</button>
+            <button className="submit" onClick={ event => props.submitForm(event) }>Submit</button>
         </form>
     )
 }
