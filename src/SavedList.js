@@ -9,7 +9,6 @@ import firebase from './firebase';
 const SavedList = (props) => {
     // this function handles removing saved items from the database
     const handleRemove = (itemId) => {
-        console.log(itemId)
         const dbRef = firebase.database().ref();
         dbRef.child(itemId).remove();
         }
