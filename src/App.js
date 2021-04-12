@@ -89,22 +89,25 @@ function App() {
     <div className="App">
       <Header />
 
-      <main>
+      <main className="wrapper">
         <section>
           <h2>Watchlist</h2>
           {/* list of items saved by the user */}
-          <ul className="watchList">
-            {
-              savedList.map( (item) => {
-                return (
+          <div className="carousel">
+            <ul className="watchList">
+              {
+                savedList.map( (item) => {
+                  return (
 
-                  <SavedList 
-                    id={item.key} 
-                    data={item.name}/>
-                )
-              }) 
-            }
-          </ul>
+                    <SavedList 
+                      id={item.key} 
+                      data={item.name}/>
+                  )
+                }) 
+              }
+            </ul>
+          </div>
+          
         </section>
 
         {/* form to search for recommendations list */}
@@ -117,7 +120,7 @@ function App() {
         
         <section>
           <h2>Recommendations</h2>
-          <ul>
+          <ul className="recommendationsList">
             {/* send results from API call as props to list component */}
             { list.length !== 0 ?
               list.map( (listItem, index) => {

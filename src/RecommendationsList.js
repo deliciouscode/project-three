@@ -24,7 +24,7 @@ const RecommendationsList = ( props ) => {
 
     return(
             <li> 
-                <img src={image} alt={props.type}/>{props.name} 
+                <img src={image} alt={props.type} aria-label={props.type}/>{props.name} 
                 <button onClick={ () => props.addToSaved(props) }>Save to List</button></li> 
     )
 }
