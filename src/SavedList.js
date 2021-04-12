@@ -47,13 +47,17 @@ const SavedList = (props) => {
 
     return(
         <li>
-            <div>
-                <img src={image} alt={props.data.title}/>
-            {/* added ternary operator to denote if a user has viewed the saved item or not */}
-            {props.data.notviewed ? <em>{props.data.title}</em>  : <strong>{props.data.title} has been viewed.</strong>}
+            <div className="savedMedia">
+                <img src={image} alt={props.data.title} aria-label={props.data.type}/>
+                {/* added ternary operator to denote if a user has viewed the saved item or not */}
+                {props.data.notviewed
+                ? <em>{props.data.title}</em> 
+                : <strong>{props.data.title} has been viewed.</strong>}
             </div>
-            <div>
-                <label htmlFor="viewed">Viewed</label><input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
+            
+            
+            <div className="userInteraction">
+                <label htmlFor="viewed">Viewed<input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } /></label>
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
             </div>
         </li>
