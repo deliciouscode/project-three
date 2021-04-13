@@ -1,6 +1,5 @@
 
 const Form = (props) => {
-    console.log(props);
     return(
         <form action="submit">
             <label htmlFor="media">Enter Your Favourite</label>

@@ -8,6 +8,7 @@ import Footer from './Footer';
 import './App.scss';
 
 function App() {
+  
   // setting up our method to set state. Has to be an empty array because of the .map method in our code below - it can map through an empty array and return nothing, but if it was a different data type, that would cause .map to not function!
   const [list, setList] = useState([]);
   // this will for the text input
@@ -16,7 +17,7 @@ function App() {
   const [mediaType, setMediaType] = useState('');
   // set saved list state for firebase
   const [savedList, setSavedList] = useState([]);
-
+  
 
   // this useEffect is added for establishing a connection to the firebase database anytime the user opens the app or makes changes to the database
     useEffect( () => {
@@ -39,7 +40,6 @@ function App() {
         setSavedList(newState);
       })
     }, [])
-
   // this function gathers the input from the text box and the dropdown menu and sends them to the API in order to set the state in the RecommendationsList component
   const formSubmit = (event) => {
     event.preventDefault();
@@ -89,22 +89,25 @@ function App() {
     <div className="App">
       <Header />
 
-      <main>
+      <main className="wrapper">
         <section>
           <h2>Watchlist</h2>
           {/* list of items saved by the user */}
-          <ul className="watchList">
-            {
+          <div className="carousel">
+            <ul className="watchList">
+              {/* send results from API call as props to list component */}
+            { savedList.length !== 0 ?
               savedList.map( (item) => {
-                return (
-
-                  <SavedList 
-                    id={item.key} 
-                    data={item.name}/>
-                )
-              }) 
-            }
-          </ul>
+                return(
+                    <SavedList 
+                      id={item.key} 
+                      data={item.name}/>
+                  )
+                }) : <p>Use the search below to get recommendations for something you like, and then save it to the watchlist to keep track of it later! </p>
+              }
+            </ul>
+          </div>
+          
         </section>
 
         {/* form to search for recommendations list */}
@@ -117,7 +120,7 @@ function App() {
         
         <section>
           <h2>Recommendations</h2>
-          <ul>
+          <ul className="recommendationsList">
             {/* send results from API call as props to list component */}
             { list.length !== 0 ?
               list.map( (listItem, index) => {
