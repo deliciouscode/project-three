@@ -28,7 +28,7 @@ $black:rgb(26,25,23);
   text-align: center;
 }  
 
-// universal styling for all buttons
+// universal styling for buttons
 button {
   background-color: $black;
   color: $grey;
@@ -48,34 +48,31 @@ button:not(.submit) {
 button:hover,
 button:focus {
   color: $orange;
+  border: 2px solid $orange;
   cursor: pointer;
 }
-
-button:active {
-  border: 2px solid $orange;
-}
-
 
 // header styles //
 header {
   background-color: $orange;
-  position: fixed;
-  top: 0;
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   color:$black;
   
   .wrapper {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-content: center;
     
-    div {
+    .logo,
+    .tasteDiveLogo {
       display: flex;
-      align-content: center;
+      align-items: center;
     }
     .logo {
       img {
+        display: block;
         width: 50px;
         margin-right: 10px;
       }
@@ -84,9 +81,15 @@ header {
         font-size: 1.2rem;
         font-weight: bold;
         color: $black;
+        padding: 0;
+        margin: 0;
       }
     }
     .tasteDiveLogo {
+      p{
+        padding: 0;
+        margin: 0;
+      }
       img {
         display: block;
         width: 100px;
@@ -94,7 +97,6 @@ header {
       }
     }
   }
-  
 }
 
 form {
@@ -122,7 +124,6 @@ form {
     -webkit-appearance: none;
     appearance: none;
   }
-  
 }
   
 a {
@@ -138,7 +139,13 @@ a:focus {
 
 // main styles
 main {
-  padding: 10vh 0 10vh ;
+  padding: 30px 0 60px ;
+  p.emptyWatchlist {
+    width: 100%;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: $black;
+  }
 }
 
 h2 {
@@ -149,37 +156,64 @@ h2 {
 
 .carousel {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  margin-bottom: 40px;
+  padding: 20px;
   .watchList {
+    margin: 0;
+    padding-left: 0;
     background: transparent;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
 
-    li {
+    
+    li{
       width: 200px;
       min-height: 200px;
-      background-color: $black;
+      background: $black;
       margin: 5px;
-      padding: 5px;
+      padding: 10px;
       border-radius: 10px;
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
+      transition: transform ease-in 0.2s;
+    }
+    li:hover,
+    li:focus {
+      transform: scale(1.05);
+      background-image:
+        radial-gradient(at top left, $orange, transparent),
+        radial-gradient(at bottom right, $orange, transparent),
+        radial-gradient(at top right, $green, transparent),
+        radial-gradient(at bottom left, $purple, transparent);
+      box-shadow: 5px 5px 5px $black;
+    }
+    p{
+      width: 100%;
     }
     img {
-      width: 50px;
+      width: 30px;
+      margin-bottom: 10px;
     }
     div {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .userInteraction{
-      margin-bottom: 10px;
-    }
+  }
+  .carousel::-webkit-scrollbar-track {
+    background: $orange;
+    box-shadow: inset 0 0 5px $grey; 
+    border-radius: 5px;
+  }
+  .carousel::-webkit-scrollbar-thumb {
+    background: $black;
+  }
+  .carousel::-webkit-scrollbar-thumb:hover {
+    background: $grey;
   }
 }
 
@@ -194,13 +228,26 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  li {
+  transition: transform ease-in 0.2s;
+  }
+  li:hover,
+  li:focus {
+    transform: scale(1.05);
+    background-image:
+    radial-gradient(at top left, $orange, transparent),
+    radial-gradient(at bottom right, $orange, transparent),
+    radial-gradient(at top right, $green, transparent),
+    radial-gradient(at bottom left, $purple, transparent);
+    box-shadow: 5px 5px 5px $black;
+  }
   img {
-    max-width: 50px;
+    max-width: 60px;
     padding: 10px 10px 0 10px;
   }
   
 }
-      
 
 // footer styles//
 footer {

@@ -81,7 +81,6 @@ function App() {
     const newList = listCopy.filter( (item) => {
       return item.Name !== recommendation.name;
     })
-
     setList(newList);
   }
 
@@ -92,21 +91,28 @@ function App() {
       <main className="wrapper">
         <section>
           <h2>Watchlist</h2>
+          <p>Use the text box below to enter the name of something you like, use the dropdown menu to select which type of media you're looking for, and then press Submit to receive a list of recommendations based on what you like!</p>
+          
           {/* list of items saved by the user */}
-          <div className="carousel">
-            <ul className="watchList">
-              {/* send results from API call as props to list component */}
-            { savedList.length !== 0 ?
-              savedList.map( (item) => {
-                return(
-                    <SavedList 
-                      id={item.key} 
-                      data={item.name}/>
-                  )
-                }) : <p>Use the search below to get recommendations for something you like, and then save it to the watchlist to keep track of it later! </p>
-              }
-            </ul>
-          </div>
+          {
+            savedList.length !==0
+            ? <div className="carousel">
+              <ul className="watchList">
+                {
+                  savedList.map( (item) => {
+                    return (
+                      <SavedList 
+                        id={item.key} 
+                        data={item.name}/>
+                    )
+                  }) 
+                }
+              </ul>
+              
+            </div>
+            : <p className="emptyWatchlist"> Nothing on Watchlist</p>
+          }
+
           
         </section>
 
@@ -132,7 +138,8 @@ function App() {
                     addToSaved={addToSaved}
                   />
                 )
-              }) : <p>Please enter a new search.</p>
+              }) 
+              : <p>Please enter a new search.</p>
             }
           </ul>
         </section>
