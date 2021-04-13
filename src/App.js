@@ -8,6 +8,7 @@ import Footer from './Footer';
 import './App.scss';
 
 function App() {
+  
   // setting up our method to set state. Has to be an empty array because of the .map method in our code below - it can map through an empty array and return nothing, but if it was a different data type, that would cause .map to not function!
   const [list, setList] = useState([]);
   // this will for the text input
@@ -16,7 +17,7 @@ function App() {
   const [mediaType, setMediaType] = useState('');
   // set saved list state for firebase
   const [savedList, setSavedList] = useState([]);
-
+  
 
   // this useEffect is added for establishing a connection to the firebase database anytime the user opens the app or makes changes to the database
     useEffect( () => {
@@ -39,7 +40,6 @@ function App() {
         setSavedList(newState);
       })
     }, [])
-
   // this function gathers the input from the text box and the dropdown menu and sends them to the API in order to set the state in the RecommendationsList component
   const formSubmit = (event) => {
     event.preventDefault();
@@ -111,6 +111,7 @@ function App() {
             </div>
             : <p className="emptyWatchlist"> Nothing on Watchlist</p>
           }
+
           
         </section>
 
