@@ -51,13 +51,19 @@ const SavedList = (props) => {
                 <img src={image} alt={props.data.title} aria-label={props.data.type}/>
                 {/* added ternary operator to denote if a user has viewed the saved item or not */}
                 {props.data.notviewed
-                ? <em>{props.data.title}</em> 
-                : <strong>{props.data.title} has been viewed.</strong>}
+                ? <p>{props.data.title}</p> 
+                : <p>{props.data.title} has been viewed.</p>}
             </div>
             
             
             <div className="userInteraction">
-                <label htmlFor="viewed">Viewed<input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } /></label>
+                <label htmlFor="viewed">Viewed </label>
+                {
+                    props.data.notviewed
+                    ? <input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
+                    : <input id="viewed" type="checkbox" checked="checked" onClick={ () => { handleViewed(props.id) } } />
+                }
+                
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
             </div>
         </li>
