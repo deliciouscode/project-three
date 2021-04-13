@@ -81,7 +81,6 @@ function App() {
     const newList = listCopy.filter( (item) => {
       return item.Name !== recommendation.name;
     })
-
     setList(newList);
   }
 
@@ -92,21 +91,26 @@ function App() {
       <main className="wrapper">
         <section>
           <h2>Watchlist</h2>
+          
           {/* list of items saved by the user */}
-          <div className="carousel">
-            <ul className="watchList">
-              {
-                savedList.map( (item) => {
-                  return (
-
-                    <SavedList 
-                      id={item.key} 
-                      data={item.name}/>
-                  )
-                }) 
-              }
-            </ul>
-          </div>
+          {
+            savedList.length !==0
+            ? <div className="carousel">
+              <ul className="watchList">
+                {
+                  savedList.map( (item) => {
+                    return (
+                      <SavedList 
+                        id={item.key} 
+                        data={item.name}/>
+                    )
+                  }) 
+                }
+              </ul>
+              
+            </div>
+            : <p className="emptyWatchlist"> Nothing on Watchlist</p>
+          }
           
         </section>
 
@@ -132,7 +136,8 @@ function App() {
                     addToSaved={addToSaved}
                   />
                 )
-              }) : <p>Please enter a new search.</p>
+              }) 
+              : <p>Please enter a new search.</p>
             }
           </ul>
         </section>
