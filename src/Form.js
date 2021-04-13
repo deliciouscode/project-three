@@ -1,3 +1,5 @@
+import { Link } from 'react-scroll';
+
 
 const Form = (props) => {
     return(
@@ -22,7 +24,7 @@ const Form = (props) => {
                 <option value="book">Book</option>
                 <option value="game">Game</option>
             </select>
-            <button className="submit" onClick={ event => props.submitForm(event) }>Submit</button>
+            <Link to="recommendations" spy={true} smooth={true}><button className="submit" onClick={ event => props.submitForm(event) }>Submit</button></Link>
         </form>
     )
 }

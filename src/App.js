@@ -1,5 +1,6 @@
 import firebase from './firebase';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-scroll';
 import Header from './Header';
 import SavedList from './SavedList';
 import Form from './Form';
@@ -126,7 +127,7 @@ function App() {
         
         <section>
           <h2>Recommendations</h2>
-          <ul className="recommendationsList">
+          <ul className="recommendationsList" id="recommendations">
             {/* send results from API call as props to list component */}
             { list.length !== 0 ?
               list.map( (listItem, index) => {
