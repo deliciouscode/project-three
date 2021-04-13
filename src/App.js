@@ -1,6 +1,5 @@
 import firebase from './firebase';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
 import Header from './Header';
 import SavedList from './SavedList';
 import Form from './Form';
