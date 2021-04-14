@@ -59,9 +59,10 @@ const SavedList = (props) => {
             <div className="userInteraction">
                 <label htmlFor="viewed">Viewed </label>
                 {
-                    props.data.notviewed
-                    ? <input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
-                    : <input id="viewed" type="checkbox" checked="checked" onClick={ () => { handleViewed(props.id) } } />
+                    <input id="viewed" type="checkbox" checked={props.data.notviewed ? "" : true} onClick={ () => { handleViewed(props.id) } } />
+                    // props.data.notviewed
+                    // ? <input id="viewed" type="checkbox" onClick={ () => { handleViewed(props.id) } } />
+                    // : <input id="viewed" type="checkbox" checked="checked" onClick={ () => { handleViewed(props.id) } } />
                 }
                 
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>
