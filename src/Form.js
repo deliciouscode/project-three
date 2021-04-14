@@ -1,6 +1,5 @@
 
 const Form = (props) => {
-    console.log(props);
     return(
         <form action="submit">
             <label htmlFor="media">Enter Your Favourite</label>
@@ -23,7 +22,7 @@ const Form = (props) => {
                 <option value="book">Book</option>
                 <option value="game">Game</option>
             </select>
-            <button onClick={ event => props.submitForm(event) }>Submit</button>
+            <button className="submit" onClick={ event => props.submitForm(event) }>Submit</button>
         </form>
     )
 }

@@ -28,6 +28,7 @@ $black:rgb(26,25,23);
   text-align: center;
 } 
 
+// universal styling fot anchor tag
 a {
   text-decoration: none;
   color: $black;
@@ -37,8 +38,36 @@ a:focus {
   color: $grey;
 }
 
+// universal styling for all buttons
+button {
+  background-color: $black;
+  color: $grey;
+  font-family: $contentFont;
+  font-size: 1rem;
+  margin: 10px 5px 5px 5px;
+  padding: 5px;
+  border: 2px solid $grey;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button:not(.submit) {
+  margin-left: 10px;
+}
+
+button:hover,
+button:focus {
+  color: $orange;
+  cursor: pointer;
+}
+
+button:active {
+  border: 2px solid $orange;
+}
+
+
 // header styles //
-header{
+header {
   background-color: $orange;
   width: 100%;
   height: auto;
@@ -63,6 +92,7 @@ header{
       img {
         display: block;
         width: 50px;
+        margin-right: 10px;
       }
       h1 {
         font-family: $contentFont;
@@ -80,6 +110,7 @@ header{
       img {
         display: block;
         width: 100px;
+        margin-top: 5px;
       }
     }
   }
@@ -96,7 +127,7 @@ main {
   }
 }
 
-h2{
+h2 {
   font-family: $headFont;
   font-size: 2rem;
   color:$black;
@@ -109,13 +140,13 @@ h2{
   scrollbar-color: $black $orange;
   margin-bottom: 40px;
   padding: 20px;
+  
   .watchList {
     margin: 0;
     padding-left: 0;
     background: transparent;
     display: flex;
     justify-content: flex-start;
-    align-items: stretch;
     
     li{
       width: 200px;
@@ -185,38 +216,22 @@ h2{
       left: -5px;
     }
   }
-
-  button {
-    background-color: $black;
-    color: $grey;
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 8px 5px 5px 10px;
-    padding: 5px;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    text-align: center;
-  }
-  button:hover,
-  button:focus {
-    color: $orange;
-    border: 2px solid $orange;
-    cursor: pointer;
-  }
 }
 
 //form styles //
 form {
-  width: 90%;
+  width: 50%;
   font-family: $contentFont;
   margin: 0 auto;
   padding: 30px 0;
   display: flex;
   flex-direction: column;
+  
   label {
     font-size: 1.5rem;
     padding-bottom: 10px;
   }
+  
   input,
   select {
     font-family: $contentFont;
@@ -234,23 +249,13 @@ form {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-  }
-  button {
-    background-color: $black;
-    color: $grey;
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 5px;
-    padding: 5px;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    text-align: center;
-  }
+  } 
 }
 
 // recomdendationsList section styles //
 .recommendationsList {
-  margin: 0;
+  margin: 0 auto;
+  width: 80%;
   padding: 20px 0;
   border-radius: 10px;
   list-style-type: none;
@@ -260,20 +265,10 @@ form {
   flex-direction: column;
   justify-content: space-between;
   img {
-    max-width: 30px;
+    max-width: 50px;
     padding: 10px 10px 0 10px;
   }
-  button {
-    background-color: $black;
-    color: $grey;
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 5px 5px 5px 10px;
-    padding: 5px;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    text-align: center;
-  }
+  
 }
       
 // footer styles//
@@ -284,13 +279,20 @@ footer {
   bottom: 0;
   z-index: 100;
   
-  p{
-    padding: 5px 0;
+  p {
+    margin: 5px 0;
     font-size: 0.8rem;
   }
 }
 
+
 // media query styles //
+@media (max-width: 768px) {
+  form {
+    width: 75%;
+  }
+}
+
 @media (max-width:520px){
   header{ 
     .wrapper {
@@ -309,7 +311,21 @@ footer {
     scrollbar-width: none;
   }
 }
+
+@media (max-width: 480px) {
   
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  form {
+    width: 100%;
+  }
+  .recommendationsList {
+    width: 100%;
+  }
+}
+
 @media (max-width:420px){
   header{
     .wrapper {
@@ -323,4 +339,3 @@ footer {
     }
   }
 }
-
