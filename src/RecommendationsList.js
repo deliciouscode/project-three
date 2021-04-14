@@ -7,7 +7,6 @@ import movie from './assets/movie.svg'
 import game from './assets/game.svg'
 
 const RecommendationsList = ( props ) => {
-    console.log(props)
     let image;
     if (props.type === 'music') {
         image = music;
