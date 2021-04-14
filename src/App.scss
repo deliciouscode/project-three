@@ -242,32 +242,31 @@ h2 {
     background: $grey;
   }
 
-    input[type="checkbox"] {
-      /* first make it disappear */
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      appearance: none;
-      border: 1px solid $white;
-      height: 15px;
-      width: 15px;
-      display: block;
-      border-radius: 3px;
-      margin: 0 10px;
-      position: relative;
-    }
-    input[type="checkbox"]:checked{
-      background-color: $purple;
-    }
-    input[type="checkbox"]:checked::before {
-      content: '✔';
-      color: $green;
-      display: block;
-      font-size: 1.2rem;
-      font-weight: bold;
-      line-height: 12px;
-      position: relative;
-      left: -5px;
-    }
+  input[type="checkbox"] {
+    /* first make it disappear */
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+    border: 1px solid $white;
+    height: 15px;
+    width: 15px;
+    display: block;
+    border-radius: 3px;
+    margin: 0 10px;
+    position: relative;
+  }
+  input[type="checkbox"]:checked{
+    background-color: $purple;
+  }
+  input[type="checkbox"]:checked::before {
+    content: '✔';
+    color: $green;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 12px;
+    position: relative;
+    left: -5px;
   }
 }
 
