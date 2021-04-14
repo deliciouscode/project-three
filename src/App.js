@@ -92,7 +92,7 @@ function App() {
       <Header />
 
       <main className="wrapper">
-        <section>
+        <section id="watchList">
           <h2>Watchlist</h2>
           <p>Use the text box below to enter the name of something you like, use the dropdown menu to select which type of media you're looking for, and then press Submit to receive a list of recommendations based on what you like!</p>
           

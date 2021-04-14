@@ -56,8 +56,6 @@ const SavedList = (props) => {
                     : <p className="viewedMessage">{props.data.title} has been viewed.</p>
                 }
             </div>
-            
-            
             <div className="userInteraction">
                 <label htmlFor="viewed">Viewed </label>
 
