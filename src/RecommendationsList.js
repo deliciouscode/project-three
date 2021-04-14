@@ -7,6 +7,7 @@ import movie from './assets/movie.svg'
 import game from './assets/game.svg'
 
 const RecommendationsList = ( props ) => {
+    console.log(props)
     let image;
     if (props.type === 'music') {
         image = music;
@@ -23,9 +24,10 @@ const RecommendationsList = ( props ) => {
     }
 
     return(
-            <li> 
+            <li>
                 <img src={image} alt={props.type} aria-label={props.type}/>{props.name} 
-                <button onClick={ () => props.addToSaved(props) }>Save to List</button></li> 
+                <button onClick={ () => props.addToSaved(props) }>Save to List</button>
+            </li> 
     )
 }
 

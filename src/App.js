@@ -17,7 +17,9 @@ function App() {
   const [mediaType, setMediaType] = useState('');
   // set saved list state for firebase
   const [savedList, setSavedList] = useState([]);
-  
+  // create state to check if user submit search or not, set default as false 
+  const [userSearch, setUserSearch] = useState(false);
+
 
   // this useEffect is added for establishing a connection to the firebase database anytime the user opens the app or makes changes to the database
     useEffect( () => {
@@ -43,7 +45,8 @@ function App() {
   // this function gathers the input from the text box and the dropdown menu and sends them to the API in order to set the state in the RecommendationsList component
   const formSubmit = (event) => {
     event.preventDefault();
-    setList([]);
+    setUserSearch(true);
+    
     const url = new URL(`https://proxy.hackeryou.com`)
         url.search = new URLSearchParams({
             reqUrl : `https://tastedive.com/api/similar`,
@@ -102,7 +105,8 @@ function App() {
                   savedList.map( (item) => {
                     return (
                       <SavedList 
-                        id={item.key} 
+                        key={item.key} 
+                        id={item.key}
                         data={item.name}/>
                     )
                   }) 
@@ -110,7 +114,7 @@ function App() {
               </ul>
               
             </div>
-            : <p className="emptyWatchlist"> Nothing on Watchlist</p>
+            : <p className="emptyWatchlist"> Nothing on Watchlist.</p>
           }
 
           
@@ -124,22 +128,24 @@ function App() {
           submitForm={formSubmit}
           />
         
-        <section>
+        <section id="recommendations">
           <h2>Recommendations</h2>
-          <ul className="recommendationsList" id="recommendations">
+          <ul className="recommendationsList">
             {/* send results from API call as props to list component */}
-            { list.length !== 0 ?
-              list.map( (listItem, index) => {
-                return(
-                  <RecommendationsList
-                    id={index}
-                    name={listItem.Name}
-                    type={listItem.Type}
-                    addToSaved={addToSaved}
-                  />
-                )
-              }) 
-              : <p>Please enter a new search.</p>
+            { userSearch === false
+              ? <p>Search for recomendations from your favourite.</p>
+              : userSearch === true && list.length !== 0
+                ?list.map( (listItem, index) => {
+                  return(
+                    <RecommendationsList
+                      key={index}
+                      name={listItem.Name}
+                      type={listItem.Type}
+                      addToSaved={addToSaved}
+                    />
+                  )
+                }) 
+              : <p>Results not found! Please enter new search with more specificity.</p>
             }
           </ul>
         </section>
