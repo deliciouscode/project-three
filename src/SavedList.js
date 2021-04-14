@@ -60,6 +60,7 @@ const SavedList = (props) => {
             
             <div className="userInteraction">
                 <label htmlFor="viewed">Viewed </label>
+
                 <input id="viewed" type="checkbox" checked={props.data.notviewed ? "" : true} onClick={ () => { handleViewed(props.id) } } />
                 
                 <button onClick={ () => { handleRemove(props.id) } }>Remove</button>

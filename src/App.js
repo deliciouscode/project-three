@@ -94,6 +94,7 @@ function App() {
       <main className="wrapper">
         <section>
           <h2>Watchlist</h2>
+          <p>Use the text box below to enter the name of something you like, use the dropdown menu to select which type of media you're looking for, and then press Submit to receive a list of recommendations based on what you like!</p>
           
           {/* list of items saved by the user */}
           {
@@ -128,7 +129,7 @@ function App() {
         
         <section>
           <h2>Recommendations</h2>
-          <ul className="recommendationsList">
+          <ul className="recommendationsList" id="recommendations">
             {/* send results from API call as props to list component */}
             { userSearch === false
               ? <p>Search for recomendations from your favourite.</p>
