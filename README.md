@@ -8,7 +8,7 @@ Tools | REST API | Firebase | React | Sass
 
 View live https://pedantic-benz-1c7278.netlify.app/
 
-Design guideline :
+Design guideline : https://docs.google.com/document/d/1EfnvK5CDgnTLftdmQtemqvvj_7ITvtc18LB7RvZQjeY/edit?usp=sharing
 
 
 
