@@ -11,6 +11,7 @@ const Form = (props) => {
                 onChange={ event => props.inputChange(event.target.value) }
                 required={true}
                 />
+            <label htmlFor="mediaType" class="sr-only">Select your Media</label>
             <select 
                 name="mediaType" 
                 id="mediaType"
