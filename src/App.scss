@@ -26,7 +26,17 @@ $black:rgb(26,25,23);
   font-family: $contentFont;
   color: $white;
   text-align: center;
-}  
+} 
+
+// universal styling fot anchor tag
+a {
+  text-decoration: none;
+  color: $black;
+}
+a:hover,
+a:focus {
+  color: $grey;
+}
 
 // universal styling for all buttons
 button {
@@ -60,14 +70,17 @@ button:active {
 header {
   background-color: $orange;
   width: 100%;
-  height: 8vh;
+  height: auto;
   color:$black;
+  position: fixed;
+  z-index: 100;
   
   .wrapper {
     height: 100%;
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-content: baseline;
     
     .logo,
     .tasteDiveLogo {
@@ -75,6 +88,7 @@ header {
       align-items: center;
     }
     .logo {
+      flex-direction: column;
       img {
         display: block;
         width: 50px;
@@ -82,8 +96,7 @@ header {
       }
       h1 {
         font-family: $contentFont;
-        font-size: 1.2rem;
-        font-weight: bold;
+        font-size: 1rem;
         color: $black;
         padding: 0;
         margin: 0;
@@ -103,49 +116,9 @@ header {
   }
 }
 
-
-form {
-  width: 50%;
-  font-family: $contentFont;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  input,
-  select {
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 5px;
-    padding: 5px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-  }
-  select {
-    background-image: url('./assets/arrow.svg');
-    background-repeat: no-repeat;
-    background-position: right 0 top 0;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  
-}
-  
-a {
-  text-decoration: none;
-  color: $black;
-}
-
-a:hover,
-a:focus {
-  color: $grey;
-}
-
-
-// main styles
+// main styles //
 main {
-  padding: 30px 0 60px ;
+  padding: 15vh 0 60px ;
   p.emptyWatchlist {
     width: 100%;
     padding: 40px;
@@ -160,18 +133,20 @@ h2 {
   color:$black;
 }
 
+//watchList section styles //
 .carousel {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
+  scrollbar-color: $black $orange;
   margin-bottom: 40px;
   padding: 20px;
+  
   .watchList {
     margin: 0;
     padding-left: 0;
     background: transparent;
     display: flex;
     justify-content: flex-start;
-
     
     li{
       width: 200px;
@@ -200,6 +175,11 @@ h2 {
     p{
       width: 100%;
     }
+    p.viewedMessage {
+      font-weight: 700;
+      font-style: italic;
+      color: $purple;
+    }
     img {
       width: 30px;
       margin-bottom: 10px;
@@ -209,47 +189,49 @@ h2 {
       flex-direction: column;
       align-items: center;
     }
-  }
-  .carousel::-webkit-scrollbar-track {
-    background: $orange;
-    box-shadow: inset 0 0 5px $grey; 
-    border-radius: 5px;
-  }
-  .carousel::-webkit-scrollbar-thumb {
-    background: $black;
-  }
-  .carousel::-webkit-scrollbar-thumb:hover {
-    background: $grey;
-  }
-  button {
-    background-color: $black;
-    color: $grey;
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 5px 5px 5px 10px;
-    padding: 5px;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    text-align: center;
-  }
-  button:hover,
-  button:focus {
-    color: $orange;
-    border: 2px solid $orange;
-    cursor: pointer;
+    input[type="checkbox"] {
+      /* first make it disappear */
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance: none;
+      border: 1px solid $white;
+      height: 15px;
+      width: 15px;
+      display: block;
+      border-radius: 3px;
+      margin: 0 10px;
+      position: relative;
+    }
+    input[type="checkbox"]:checked{
+      background-color: $purple;
+    }
+    input[type="checkbox"]:checked::before {
+      content: '✔';
+      color: $green;
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      line-height: 12px;
+      position: relative;
+      left: -5px;
+    }
   }
 }
 
+//form styles //
 form {
-  width: 90%;
+  width: 50%;
   font-family: $contentFont;
   margin: 0 auto;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
+  
   label {
     font-size: 1.5rem;
     padding-bottom: 10px;
   }
+  
   input,
   select {
     font-family: $contentFont;
@@ -267,20 +249,10 @@ form {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-  }
-  button {
-    background-color: $black;
-    color: $grey;
-    font-family: $contentFont;
-    font-size: 1rem;
-    margin: 5px;
-    padding: 5px;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    text-align: center;
-  }
+  } 
 }
 
+// recomdendationsList section styles //
 .recommendationsList {
   margin: 0 auto;
   width: 80%;
@@ -299,13 +271,13 @@ form {
   
 }
       
-
 // footer styles//
 footer {
   background-color: $orange;
   width: 100%;
   position: fixed;
   bottom: 0;
+  z-index: 100;
   
   p {
     margin: 5px 0;
@@ -313,13 +285,33 @@ footer {
   }
 }
 
-// media queries
 
+// media query styles //
 @media (max-width: 768px) {
   form {
     width: 75%;
   }
 }
+
+@media (max-width:520px){
+  header{ 
+    .wrapper {
+      .tasteDiveLogo {
+        p{
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel {
+    -ms-overflow-style:none;
+    scrollbar-width: none;
+  }
+}
+
 @media (max-width: 480px) {
   
   h2 {
@@ -329,8 +321,21 @@ footer {
   form {
     width: 100%;
   }
-
   .recommendationsList {
     width: 100%;
+  }
+}
+
+@media (max-width:420px){
+  header{
+    .wrapper {
+      .tasteDiveLogo {
+        flex-direction: column;
+        p{
+          font-size: 0.7rem;
+          font-weight: 700;
+        }
+      }
+    }
   }
 }
