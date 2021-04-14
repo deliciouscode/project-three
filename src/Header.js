@@ -9,11 +9,13 @@ const Header = () => {
                     <img src={logo} alt="Delicious Code logo"/>
                     <h1>Delicious Code</h1>
                 </div>
+            
                 <div className="tasteDiveLogo">
                     <p>Powered by </p>
-                    <a href="https://tastedive.com/read/api"><img src={tasteDive} alt="tastedive logo"/></a>
+                    <a href="https://tastedive.com/read/api" target="_blank" rel="noreferrer"><img src={tasteDive} alt="tastedive logo"/></a>
                 </div>
             </div>
+            
             
         </header>
     )

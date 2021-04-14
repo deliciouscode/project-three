@@ -7,6 +7,11 @@ $white :rgb(249,250,251);
 $grey :rgb(228, 221, 211);
 $black:rgb(26,25,23);
 
+.wrapper {
+  max-width: 1200px ;
+  width: 90%;
+  margin: 0 auto;
+}
 .App {
   background-color: $white;
   background-image:
@@ -17,136 +22,346 @@ $black:rgb(26,25,23);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: 1rem;
   font-family: $contentFont;
   color: $white;
   text-align: center;
+} 
+
+// universal styling fot anchor tag
+a {
+  text-decoration: none;
+  color: $black;
+}
+a:hover,
+a:focus {
+  color: $grey;
+}
+
+// universal styling for buttons
+button {
+  background-color: $black;
+  color: $grey;
+  font-family: $contentFont;
+  font-size: 1rem;
+  margin: 10px 5px 5px 5px;
+  padding: 5px;
+  border: 2px solid $grey;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button:hover,
+button:focus {
+  color: $orange;
+  border: 2px solid $orange;
+  cursor: pointer;
+}
+
+// header styles //
+header {
+  background-color: $orange;
+  width: 100%;
+  height: auto;
+  color:$black;
+  position: fixed;
+  z-index: 100;
   
   .wrapper {
-    max-width: 1200px ;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  header {
-    background-color: $orange;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    color:$black;
+    height: 100%;
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
-    align-content: center;
-
-    div{
+    align-content: baseline;
+    
+    .logo,
+    .tasteDiveLogo {
       display: flex;
-      justify-content: space-between;
       align-items: center;
     }
-
-    .logo{
+    .logo {
+      flex-direction: column;
+      img {
+        display: block;
+        width: 50px;
+        margin-right: 10px;
+      }
       h1 {
         font-family: $contentFont;
         font-size: 1rem;
         color: $black;
-      }
-      img {
-        width: 60px;
+        padding: 0;
+        margin: 0;
       }
     }
-    
     .tasteDiveLogo {
+      p{
+        padding: 0;
+        margin: 0;
+      }
       img {
         display: block;
         width: 100px;
+        margin-top: 5px;
       }
     }
   }
-
-  h2{
-    font-family: $headFont;
-    font-size: 2rem;
-    color:$black;
-  }
-
-  form {
-    width: 50%;
-    font-family: $contentFont;
-
-    input,
-    select,
-    button {
-      font-family: $contentFont;
-      font-size: 1rem;
-      margin: 5px;
-      padding: 5px;
-      border: none;
-    }
-  }
-
-  ul {
-    margin: 0;
-    padding: 20px 0;
-    border-radius: 10px;
-    list-style-type: none;
-    padding-left: 0;
-    background-color: $black;
-    img {
-      display: block;
-      max-width: 30px;
-      padding: 10px;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: $black;
-  }
-
-  a:hover,
-  a:focus {
-    color: $grey;
-  }
-
-  main {
-    padding: 10vh 0 10vh ;
-
-    .watchList {
-      background: transparent;
-      display: flex;
-
-      li{
-        width: calc(33% - 26px);
-        
-        background-color: $black;
-        margin: 5px;
-        padding: 8px;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-  footer {
-    background-color: $orange;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    
-    p{
-      margin: 8px 0;
-      font-size: 0.8rem;
-    }
-  }
-
 }
 
+
+// main styles //
+
+main {
+  padding: 15vh 0 60px ;
+  p.emptyWatchlist {
+    width: 100%;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: $black;
+  }
+}
+
+h2 {
+  font-family: $headFont;
+  font-size: 2rem;
+  color:$black;
+}
+
+//watchList section styles //
+.carousel {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-color: $black $orange;
+  margin-bottom: 40px;
+  padding: 20px;
+  
+  .watchList {
+    margin: 0;
+    padding-left: 0;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    
+    li{
+      width: 200px;
+      min-height: 200px;
+      background: $black;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      transition: transform ease-in 0.2s;
+    }
+    li:hover,
+    li:focus {
+      transform: scale(1.05);
+      background-image:
+        radial-gradient(at top left, $orange, transparent),
+        radial-gradient(at bottom right, $orange, transparent),
+        radial-gradient(at top right, $green, transparent),
+        radial-gradient(at bottom left, $purple, transparent);
+      box-shadow: 5px 5px 5px $black;
+    }
+    p{
+      width: 100%;
+    }
+    p.viewedMessage {
+      font-weight: 700;
+      font-style: italic;
+      color: $purple;
+    }
+    img {
+      width: 30px;
+      margin-bottom: 10px;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .carousel::-webkit-scrollbar-track {
+    background: $orange;
+    box-shadow: inset 0 0 5px $grey; 
+    border-radius: 5px;
+  }
+  .carousel::-webkit-scrollbar-thumb {
+    background: $black;
+  }
+  .carousel::-webkit-scrollbar-thumb:hover {
+    background: $grey;
+  }
+
+  input[type="checkbox"] {
+    /* first make it disappear */
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+    border: 1px solid $white;
+    height: 15px;
+    width: 15px;
+    display: block;
+    border-radius: 3px;
+    margin: 0 10px;
+    position: relative;
+  }
+  input[type="checkbox"]:checked{
+    background-color: $purple;
+  }
+  input[type="checkbox"]:checked::before {
+    content: '✔';
+    color: $green;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 12px;
+    position: relative;
+    left: -5px;
+  }
+}
+
+// form styles
+form {
+  width: 50%;
+  font-family: $contentFont;
+  margin: 0 auto;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  
+  label {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+  }
+  input,
+  select {
+    font-family: $contentFont;
+    font-size: 1rem;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+  }
+  select {
+    background-image: url('./assets/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 0 top 0;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  button {
+    width: calc(100% - 10px);
+    margin: 5px auto;
+  }
+}
+
+// recomdendationsList section styles //
+.recommendationsList {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px 0;
+  border-radius: 10px;
+  list-style-type: none;
+  padding-left: 0;
+  background-color: $black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  li {
+  transition: transform ease-in 0.2s;
+  }
+  li:hover,
+  li:focus {
+    transform: scale(1.05);
+    background-image:
+    radial-gradient(at top left, $orange, transparent),
+    radial-gradient(at bottom right, $orange, transparent),
+    radial-gradient(at top right, $green, transparent),
+    radial-gradient(at bottom left, $purple, transparent);
+    box-shadow: 5px 5px 5px $black;
+  }
+  img {
+    max-width: 60px;
+    padding: 10px 10px 0 10px;
+  }
+  button {
+    margin-left: 10px;
+  }
+  
+}
+
+// footer styles//
+footer {
+  background-color: $orange;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  
+  p {
+    margin: 5px 0;
+    padding: 5px 0;
+    font-size: 0.8rem;
+  }
+}
+
+// media query styles //
+@media (max-width: 768px) {
+  form {
+    width: 75%;
+  }
+}
+
+@media (max-width:520px){
+  header{ 
+    .wrapper {
+      .tasteDiveLogo {
+        p{
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel {
+    -ms-overflow-style:none;
+    scrollbar-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  form {
+    width: 100%;
+  }
+  .recommendationsList {
+    width: 100%;
+  }
+}
+
+@media (max-width:420px){
+  header{
+    .wrapper {
+      .tasteDiveLogo {
+        flex-direction: column;
+        p{
+          font-size: 0.7rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
