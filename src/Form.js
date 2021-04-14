@@ -9,7 +9,7 @@ const Form = (props) => {
                 type="text" 
                 id="media"
                 onChange={ event => props.inputChange(event.target.value) }
-                required="true"
+                required
                 />
             <select 
                 name="mediaType" 

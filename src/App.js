@@ -105,7 +105,8 @@ function App() {
                   savedList.map( (item) => {
                     return (
                       <SavedList 
-                        id={item.key} 
+                        key={item.key} 
+                        id={item.key}
                         data={item.name}/>
                     )
                   }) 
@@ -127,9 +128,9 @@ function App() {
           submitForm={formSubmit}
           />
         
-        <section>
+        <section id="recommendations">
           <h2>Recommendations</h2>
-          <ul className="recommendationsList" id="recommendations">
+          <ul className="recommendationsList">
             {/* send results from API call as props to list component */}
             { userSearch === false
               ? <p>Search for recomendations from your favourite.</p>
@@ -137,7 +138,7 @@ function App() {
                 ?list.map( (listItem, index) => {
                   return(
                     <RecommendationsList
-                      id={index}
+                      key={index}
                       name={listItem.Name}
                       type={listItem.Type}
                       addToSaved={addToSaved}
